@@ -1,15 +1,34 @@
-// Connect to Mysql using Sequelize through a json file.
-var Sequelize = require("sequelize");
-var sequelize;
-var env       = process.env.NODE_ENV || 'development';
-var config    = require(__dirname + '/../config/config.json')[env];
-var db        = {};
+// Connect to mysql ===================================================================================================
+var mysql = require("mysql");
 
-if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+var connection = mysql.createConnection({
+  port: 3306,
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "burger_db"
+});
+
+// Check to see if there is a connection and if not set one up ========================================================
+if (process.env.burger_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: "",
+    database: "burger_db"
+  })
 }
 
+// Carry out the connection and console log the result ================================================================
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
+});
 
-module.exports = sequelize;
+// Export the connection file ==============================================================================================
+module.exports = connection;

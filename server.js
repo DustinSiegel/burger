@@ -3,7 +3,6 @@ var express = require("express");
 var exphbs  = require('express-handlebars');
 var bodyParser = require("body-parser"); 
 var methodOverride = require('method-override');
-var Sequelize = require('sequelize');
 var app = express();	
 var PORT = process.env.PORT || 3000; 
 
@@ -23,22 +22,6 @@ app.set('view engine', 'handlebars');
 // Points the server to the controller file ===============================================================================
 var connect = require("./controllers/burgers_controller.js");
 app.use('/', connect);
-
-// Use sequelize to connect to mysql ======================================================================================
-const sequelize = new Sequelize('burgers_db', 'root', "", {
-  host: 'localhost',
-  dialect: 'mysql',
-  }
-});
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('This thing is connected.');
-  })
-  .catch(err => {
-    console.error('This thing is not connecting:', err);
-  });
 
 // App listener with an alert =============================================================================================
 app.listen(PORT, function() {

@@ -13,17 +13,32 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// override with the X-HTTP-Method-Override header in the request =========================================================
+// override with the Method-Override header in the request ================================================================
 app.use(methodOverride('_method'));
 app.use(express.static("public"));
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-// Points the server to the route files ===================================================================================
+// Points the server to the controller file ===============================================================================
 var connect = require("./controllers/burgers_controller.js");
- 
 app.use('/', connect);
+
+// Use sequelize to connect to mysql ======================================================================================
+const sequelize = new Sequelize('burgers_db', 'root', "", {
+  host: 'localhost',
+  dialect: 'mysql',
+  }
+});
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('This thing is connected.');
+  })
+  .catch(err => {
+    console.error('This thing is not connecting:', err);
+  });
 
 // App listener with an alert =============================================================================================
 app.listen(PORT, function() {

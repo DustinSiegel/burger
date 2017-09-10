@@ -20,7 +20,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 // Points the server to the controller file ===============================================================================
-var connect = require("./controllers/burgers_controller.js");
+var connect = require("./controllers/burger_controller.js");
 app.use('/', connect);
 
 // App listener with an alert =============================================================================================

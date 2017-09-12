@@ -11,8 +11,8 @@ var burgers = {
     	});
   	},
 
-  	insertOne: function(columns, values, show) {
-    	orm.insertOne("burgers", columns, values, function(res) {
+  	insertOne: function(columns, insertIt, show) {
+    	orm.insertOne("burgers", columns, insertIt, function(res) {
       	show(res);
     	});
   	},

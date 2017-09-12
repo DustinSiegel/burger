@@ -1,26 +1,32 @@
 // Connect to mysql ===================================================================================================
 var mysql = require("mysql");
 
-var connection = mysql.createConnection({
-  port: 3306,
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "burgers_db"
-});
 
 // Check to see if there is a connection and if not set one up ========================================================
-if (process.env.burgers_URL) {
-  connection = mysql.createConnection(process.env.burgers_URL);
-} else {
+// if (process.env.JAWSDB_URL) {
+//   connection = mysql.createConnection(process.env.JAWSDB_URL);
+// } else {
   connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: "",
-    database: "burgers_db"
+    port: 3306,
+    host: "codeflink.net",
+    user: "dustinsiegel",
+    password: "X3LwzmZHIB1C",
+    database: "dustinsiegel"
   })
-}
+// }
 
+// Host: codeflink.net
+// Username: dustinsiegel
+// Password: X3LwzmZHIB1C
+// Database: dustinsiegel
+
+// var connection = mysql.createConnection({
+//   port: 3306,
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "burgers_db"
+// });
 // Carry out the connection and console log the result ================================================================
 connection.connect(function(err) {
   if (err) {

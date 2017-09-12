@@ -17,9 +17,9 @@ function sendObject(ob) {
   var arr = [];
 
   for (var key in ob) {
-    if (Object.hasOwnProperty.call(ob, key)) {
+    // if (Object.hasOwnProperty.call(ob, key)) {
       arr.push(key + "=" + ob[key]);
-    }
+    // }
   }
 
   return arr.toString();
@@ -50,7 +50,7 @@ var orm = {
 		queryString += putInData(insertIt.length);
 		queryString += ") ";
 
-		console.log("queryString", queryString)
+		console.log("queryString", queryString);
 		connection.query(queryString, insertIt, function(err, result) {
 			if (err) {
 				throw err;

@@ -2,10 +2,10 @@ var express = require("express");
 
 var router = express.Router();
 
-var burgers = require("../models/burger.js");
+var burger = require("../models/burger.js");
 
 router.get("/", function(req, res) {
-  burgers.selectAll(function(data) {
+  burger.selectAll(function(data) {
     console.log(data);
     var handleBarObj = {
       burgers: data
@@ -16,14 +16,14 @@ router.get("/", function(req, res) {
 });
 
 router.post("/burgers", function(req, res) {
-  burgers.insertOne([
+  burger.insertOne([
     "burger_name"
   ], [
     req.body.burger_name
   ], function(data) {
     res.redirect("/");
   });
-      console.log(req.body);
+  console.log(req.body);
 });
 
 router.put("/burgers/:id", function(req, res) {
@@ -31,7 +31,7 @@ router.put("/burgers/:id", function(req, res) {
 
   console.log("condition", condition);
 
-  burgers.updateOne({
+  burger.updateOne({
     devoured: true
   }, condition, function(data) {
     res.redirect("/");

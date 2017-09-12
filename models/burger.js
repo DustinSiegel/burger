@@ -2,26 +2,27 @@
 var orm = require("../config/orm.js");
 
 // A variable to hold of the connections ================================================================================
-var burgers = {
+var burger = {
 	
 // Uses the orm to connect and manipulate the data ======================================================================
-	selectAll: function(show) {
+	selectAll: function(callback) {
     	orm.selectAll("burgers", function(res) {
-      	show(res);
+      	callback(res);
     	});
   	},
 
-  	insertOne: function(columns, insertIt, show) {
-    	orm.insertOne("burgers", columns, insertIt, function(res) {
-      	show(res);
+  	insertOne: function(columns, values, callback) {
+    	orm.insertOne("burgers", columns, values, function(res) {
+      	callback(res);
     	});
   	},
-  	updateOne: function(values, condition, show) {
+
+  	updateOne: function(values, condition, callback) {
     	orm.updateOne("burgers", values, condition, function(res) {
-      	show(res);
+      	callback(res);
     	});
   	},
 };
 
 // Exports the burger varaible ==========================================================================================
-module.exports = burgers;
+module.exports = burger;

@@ -1,10 +1,4 @@
--- Bamazon Customer =============================================
-
-DROP DATABASE IF EXISTS burgers_db;
-
-CREATE DATABASE burgers_db;
-
-USE burgers_db;
+-- Burger Schema =============================================
 
 CREATE TABLE burgers (
 `id` INTEGER(10) AUTO_INCREMENT NOT NULL,
